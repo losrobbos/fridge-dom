@@ -16,7 +16,11 @@ export class Fridge {
    * @param {Product} product 
    */
   addProduct(product) {
-    this.products.push(product)
+    if(this.getCapacityAvailable() >= product.volume) {
+      this.products.push(product)
+      return true
+    }
+    return false
   }
 
   /**
@@ -44,15 +48,34 @@ export class Fridge {
     return biggestProduct
   }
 
-  getOutdated() {
-    const today = new Date()
-    console.log(today)
+  getCapacityAvailable() {
+    return this.capacityMax - this.getCapacityTaken()
+  }
 
-    // TODO: evaluate if date is beyond today
+  getCapacityTaken() {
+    return this.products.reduce((capTotal, prod) => capTotal+prod.volume, 0)
+  }
+
+  getOutdated() {
+    const today = new Date().toISOString().substring(0, 10)
+
     const productsOutdated = this.products.filter(product => {
-      console.log( product.expiryDate )
-      return product
+      return product.expiryDate < today
     })
     return productsOutdated
+  }
+
+  getFresh() {
+    const today = new Date().toISOString().substring(0, 10);
+
+    const productsOutdated = this.products.filter((product) => {
+      return product.expiryDate >= today;
+    });
+    return productsOutdated;
+  }
+
+  // clear outdated guys
+  detox() {
+    this.products = this.getFresh()
   }
 }

@@ -41,19 +41,24 @@
       </div>
     </div>
     <div class="fridge-container w-2/3 content-start p-5 flex flex-wrap gap-3 items-start">
-      <div class="product-card w-48 h-28 p-3 border border-x-cyan-900 rounded cursor-pointer">
-        <div class="product-name text-teal-500 text-xl uppercase">Dummy</div>
+      <div class="product-card w-48 h-28 p-3 border border-x-cyan-900 rounded">
+        <div class="product-name text-teal-500 text-xl uppercase cursor-pointer">Dummy</div>
         <div class="text-base"><span class="product-volume">15</span> VU</div>
         <div class="text-xs">Expiry: <span class="product-expiry">2022-11-05</span></div>
       </div>
     </div>
-    <div class="product-add w-1/4 flex flex-col gap-4 px-3">
+    <div class="fridge-actions w-1/4 flex flex-col gap-4 px-3">
       <label class="font-extrabold">ACTIONS</label>
-      <label class="font-semibold text-gray-500">New product</label>
-      <input class="product-name" type="text" placeholder="Name" />
-      <input class="product-volume" type="number" min="0" placeholder="Volume" />
-      <input class="product-expiry" type="date" placeholder="Expiry Date" />
-      <button class="bg-purple-500 rounded p-2 text-white uppercase font-extrabold">Add</button>
+      <div class="product-detox">
+        <button class="bg-red-600 rounded p-2 text-white uppercase font-extrabold">Detox</button>
+      </div>
+      <div class="product-add">
+        <label class="font-semibold text-gray-500">New product</label>
+        <input class="product-name" type="text" placeholder="Name" />
+        <input class="product-volume" type="number" min="0" placeholder="Volume" />
+        <input class="product-expiry" type="date" placeholder="Expiry Date" />
+        <button class="bg-purple-500 rounded p-2 text-white uppercase font-extrabold">Add</button>
+      </div>
     </div>
   </main>
 

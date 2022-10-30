@@ -24,34 +24,47 @@ const elProductVolume = document.querySelector(
 const elProductExpiry = document.querySelector(
   ".product-add > .product-expiry"
 );
+const elProductDetox = document.querySelector(".product-detox > button");
 const elProductButtonAdd = document.querySelector(".product-add > button");
 
 /**
  * Handle User Interaction (EVENT LISTENERS)
+ * @param {Fridge} fridge
  */
 export const setupListeners = (fridge) => {
-  
+  elProductDetox.addEventListener("click", () => {
+    fridge.detox();
+    displayProducts(fridge); // update product list
+    updateStats(fridge);
+  });
+
   // Add Product Form - submit button
   elProductButtonAdd.addEventListener("click", () => {
     const [name, volume, expiryDate] = [
       elProductName.value,
-      elProductVolume.value,
+      parseInt(elProductVolume.value),
       elProductExpiry.value,
     ];
-  
+
     // input validation
     if (!name || !volume) return;
-  
+
     // check if already in list!
     if (fridge.products.find((prod) => prod.name === name)) return;
-  
+
     const prodNew = new Product(name, volume, expiryDate);
-    fridge.addProduct(prodNew);
-    insertProductCard(prodNew);
+    if (fridge.addProduct(prodNew)) {
+      insertProductCard(prodNew);
+      updateStats(fridge);
+      // clear form
+      elProductName.value = "";
+      elProductVolume.value = "";
+      elProductExpiry.value = "";
+    } else {
+      console.log("Capacity exceeded! Product rejected");
+    }
   });
-
-}
-
+};
 
 /**
  * Convert product object into HTML DOM Element with given style
@@ -68,10 +81,9 @@ const createProductCardDom = (product) => {
     "border",
     "border-cyan-900",
     "rounded",
-    "cursor-pointer"
   );
   productCard.innerHTML = `
-      <div class="product-name text-teal-500 text-xl uppercase">${product.name}</div>
+      <div class="product-name text-teal-500 text-xl uppercase cursor-pointer">${product.name}</div>
       <div class="text-base"><span class="product-volume">${product.volume}</span> VU</div>
       <div class="text-xs">Expiry: <span class="product-expiry">${product.expiryDate}</span></div>
   `;
@@ -89,7 +101,7 @@ export const insertProductCard = (product) => {
 
 /**
  * display initial fridge in fridge container
- * @param {Fridge} fridge 
+ * @param {Fridge} fridge
  */
 export const displayProducts = (fridge) => {
   // clear container
@@ -101,21 +113,20 @@ export const displayProducts = (fridge) => {
 
 /**
  * evaluate stats from product list and show in stats panel
- * @param {Fridge} fridge 
+ * @param {Fridge} fridge
  */
 export const updateStats = (fridge) => {
-  const capacityMax = fridge.capacityMax
-  const capTaken = fridge.products.reduce((capTotal, prod) => capTotal+prod.volume, 0)
-  const capAvailable = capacityMax-capTaken
-  const biggest = fridge.getBiggestProduct()
-  const smallest = fridge.getSmallestProduct()
-  const outdated = fridge.getOutdated()
+  const capacityMax = fridge.capacityMax;
+  const capTaken = fridge.getCapacityTaken();
+  const capAvailable = capacityMax - capTaken;
+  const biggest = fridge.getBiggestProduct();
+  const smallest = fridge.getSmallestProduct();
+  const outdated = fridge.getOutdated();
 
-  elStatsCapacity.innerText = capacityMax
-  elStatsCapacityTaken.innerText = capTaken
-  elStatsCapacityAvailable.innerText = capAvailable
-  elStatsBiggest.innerText = biggest.name
-  elStatsLowest.innerText = smallest.name
-  elStatsExpired.innerText = outdated.map(prod => prod.name).join(", ")
-
-}
+  elStatsCapacity.innerText = capacityMax;
+  elStatsCapacityTaken.innerText = capTaken;
+  elStatsCapacityAvailable.innerText = capAvailable;
+  elStatsBiggest.innerText = biggest.name;
+  elStatsLowest.innerText = smallest.name;
+  elStatsExpired.innerText = outdated.map((prod) => prod.name).join(", ");
+};
