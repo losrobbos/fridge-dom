@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FRIDGE DOM DEMO</title>
+  <link rel="stylesheet" href="./dist/styles.css">
+  <script defer type="module" src="./src/js/main.js"></script>
+</head>
+<body>
+
+  <main>
+    <div class="fridge-container h-80 content-start p-5 border border-teal-600 flex flex-wrap gap-3 items-start">      
+      <div class="product-card w-48 h-28 p-3 border border-x-cyan-900 rounded cursor-pointer">
+        <div class="product-name text-teal-500 text-xl uppercase">Dummy</div>
+        <div class="text-base"><span class="product-volume">15</span> VU</div>
+        <div class="text-xs">Expiry: <span class="product-expiry">2022-11-05</span></div>
+      </div>
+    </div>
+    <div class="product-add">
+      <input class="product-name" type="text" placeholder="Produto Name" />
+      <input class="product-volume" type="number" min="0" placeholder="Volume" />
+      <input class="product-expiry" type="date" placeholder="Expiry Date" />
+      <button>Add Product</button>
+    </div>
+  </main>
+  
+</body>
+</html>

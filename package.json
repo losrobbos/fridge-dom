@@ -1,0 +1,16 @@
+{
+  "name": "43-sub-navbar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postcss.config.js",
+  "scripts": {
+    "start": "live-server .",
+    "css": "tailwindcss -i ./src/css/styles.css -w -o ./dist/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.2.1"
+  }
+}

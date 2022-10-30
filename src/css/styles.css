@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  @apply bg-red-500 text-lg text-blue-500;
+}
+/* normal CSS works too! */
+/* .card {
+    color: white;
+  } */
