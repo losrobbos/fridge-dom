@@ -48,8 +48,10 @@ export class Fridge {
     const today = new Date()
     console.log(today)
 
+    // TODO: evaluate if date is beyond today
     const productsOutdated = this.products.filter(product => {
       console.log( product.expiryDate )
+      return product
     })
     return productsOutdated
   }

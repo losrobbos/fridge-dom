@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,23 +9,54 @@
   <link rel="stylesheet" href="./dist/styles.css">
   <script defer type="module" src="./src/js/main.js"></script>
 </head>
+
 <body>
 
-  <main>
-    <div class="fridge-container h-80 content-start p-5 border border-teal-600 flex flex-wrap gap-3 items-start">      
+  <main class="p-3 flex border border-teal-600">
+    <div class="fridge-stats w-1/6 flex flex-col gap-3">
+      <label class="font-extrabold">STATS</label>
+      <div>
+        <label class="font-light">Capacity (Cap)</label>
+        <div class="capacity">0</div>
+      </div>
+      <div>
+        <label class="font-light">Cap Taken</label>
+        <div class="capacity-taken">0</div>
+      </div>
+      <div>
+        <label class="font-light">Cap Available</label>
+        <div class="capacity-available">0</div>
+      </div>
+      <div>
+        <label class="font-light">Lowest</label>
+        <div class="lowest">0</div>
+      </div>
+      <div>
+        <label class="font-light">Biggest</label>
+        <div class="biggest">0</div>
+      </div>
+      <div>
+        <label class="font-light">Expired</label>
+        <div class="expired">0</div>
+      </div>
+    </div>
+    <div class="fridge-container w-2/3 content-start p-5 flex flex-wrap gap-3 items-start">
       <div class="product-card w-48 h-28 p-3 border border-x-cyan-900 rounded cursor-pointer">
         <div class="product-name text-teal-500 text-xl uppercase">Dummy</div>
         <div class="text-base"><span class="product-volume">15</span> VU</div>
         <div class="text-xs">Expiry: <span class="product-expiry">2022-11-05</span></div>
       </div>
     </div>
-    <div class="product-add">
-      <input class="product-name" type="text" placeholder="Produto Name" />
+    <div class="product-add w-1/4 flex flex-col gap-4 px-3">
+      <label class="font-extrabold">ACTIONS</label>
+      <label class="font-semibold text-gray-500">New product</label>
+      <input class="product-name" type="text" placeholder="Name" />
       <input class="product-volume" type="number" min="0" placeholder="Volume" />
       <input class="product-expiry" type="date" placeholder="Expiry Date" />
-      <button>Add Product</button>
+      <button class="bg-purple-500 rounded p-2 text-white uppercase font-extrabold">Add</button>
     </div>
   </main>
-  
+
 </body>
+
 </html>
