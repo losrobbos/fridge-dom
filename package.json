@@ -5,7 +5,8 @@
   "main": "postcss.config.js",
   "scripts": {
     "start": "live-server .",
-    "css": "tailwindcss -i ./src/css/styles.css -w -o ./dist/styles.css"
+    "css": "tailwindcss -i ./src/css/styles.css -o ./dist/styles.css",
+    "css-watch": "tailwindcss -i ./src/css/styles.css -w -o ./dist/styles.css"
   },
   "keywords": [],
   "author": "",
