@@ -8,6 +8,7 @@ Following JS concepts are applied:
 - using Array forEach to find product with smallest / biggest volume
 - using Array reduce to determine capacity / volume of all items
 - using Array filter to determine outdated items
+- TailwindCSS for quick, minimal prototype styling
 
 Demo : https://fridge-dom-demo.vercel.app/ 
 (caution: absolute minimal design :D)
