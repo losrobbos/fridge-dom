@@ -1,4 +1,4 @@
-import { Fridge } from "./fridge.js";
+import { fridge } from "./data.js";
 import { Product } from "./product.js";
 
 // DOM NODES
@@ -30,15 +30,14 @@ const elProductAddError = document.querySelector(".product-add-errors");
 
 /**
  * Handle User Interaction (=EVENT LISTENERS)
- * @param {Fridge} fridge
  */
-export const setupListeners = (fridge) => {
+export const setupListeners = () => {
 
   // DETOX
   elProductDetox.addEventListener("click", () => {
     fridge.detox();
-    displayProducts(fridge); // update product list
-    updateStats(fridge);
+    displayProducts(); // update product list
+    updateStats();
   });
 
   // ADD PRODUCT Button
@@ -67,7 +66,7 @@ export const setupListeners = (fridge) => {
     const prodNew = new Product(name, volume, expiryDate);
     if (fridge.addProduct(prodNew)) {
       insertProductCard(prodNew);
-      updateStats(fridge);
+      updateStats();
       // clear form
       elProductName.value = "";
       elProductVolume.value = "";
@@ -83,9 +82,8 @@ export const setupListeners = (fridge) => {
 
 /**
  * display initial fridge in fridge container
- * @param {Fridge} fridge
  */
-export const displayProducts = (fridge) => {
+export const displayProducts = () => {
   // clear container
   elFridgeContainer.innerHTML = "";
 
@@ -128,9 +126,8 @@ const createProductCardDom = (product) => {
 
 /**
  * evaluate stats from product list and show in stats panel
- * @param {Fridge} fridge
  */
-export const updateStats = (fridge) => {
+export const updateStats = () => {
   const capacityMax = fridge.capacityMax;
   const capTaken = fridge.getCapacityTaken();
   const capAvailable = capacityMax - capTaken;
