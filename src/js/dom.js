@@ -29,17 +29,19 @@ const elProductButtonAdd = document.querySelector(".product-add > button");
 const elProductAddError = document.querySelector(".product-add-errors");
 
 /**
- * Handle User Interaction (EVENT LISTENERS)
+ * Handle User Interaction (=EVENT LISTENERS)
  * @param {Fridge} fridge
  */
 export const setupListeners = (fridge) => {
+
+  // DETOX
   elProductDetox.addEventListener("click", () => {
     fridge.detox();
     displayProducts(fridge); // update product list
     updateStats(fridge);
   });
 
-  // Add Product Form - submit button
+  // ADD PRODUCT Button
   elProductButtonAdd.addEventListener("click", () => {
 
     const [name, volume, expiryDate] = [
@@ -76,6 +78,30 @@ export const setupListeners = (fridge) => {
   });
 };
 
+// DOM LIB FUNCTIONS
+// (used by event listeners)
+
+/**
+ * display initial fridge in fridge container
+ * @param {Fridge} fridge
+ */
+export const displayProducts = (fridge) => {
+  // clear container
+  elFridgeContainer.innerHTML = "";
+
+  // create product cards and inject
+  fridge.products.forEach((prod) => insertProductCard(prod));
+};
+
+/**
+ *
+ * @param {Product} product
+ */
+export const insertProductCard = (product) => {
+  const elProductCard = createProductCardDom(product);
+  elFridgeContainer.appendChild(elProductCard);
+};
+
 /**
  * Convert product object into HTML DOM Element with given style
  *
@@ -98,27 +124,6 @@ const createProductCardDom = (product) => {
       <div class="text-xs">Expiry: <span class="product-expiry">${product.expiryDate}</span></div>
   `;
   return productCard;
-};
-
-/**
- *
- * @param {Product} product
- */
-export const insertProductCard = (product) => {
-  const elProductCard = createProductCardDom(product);
-  elFridgeContainer.appendChild(elProductCard);
-};
-
-/**
- * display initial fridge in fridge container
- * @param {Fridge} fridge
- */
-export const displayProducts = (fridge) => {
-  // clear container
-  elFridgeContainer.innerHTML = "";
-
-  // create product cards and inject
-  fridge.products.forEach((prod) => insertProductCard(prod));
 };
 
 /**
