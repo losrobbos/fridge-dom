@@ -26,6 +26,7 @@ const elProductExpiry = document.querySelector(
 );
 const elProductDetox = document.querySelector(".product-detox > button");
 const elProductButtonAdd = document.querySelector(".product-add > button");
+const elProductAddError = document.querySelector(".product-add-errors");
 
 /**
  * Handle User Interaction (EVENT LISTENERS)
@@ -40,17 +41,26 @@ export const setupListeners = (fridge) => {
 
   // Add Product Form - submit button
   elProductButtonAdd.addEventListener("click", () => {
+
     const [name, volume, expiryDate] = [
       elProductName.value,
       parseInt(elProductVolume.value),
       elProductExpiry.value,
     ];
 
+    elProductAddError.innerText = "";
+
     // input validation
-    if (!name || !volume) return;
+    if (!name || !volume) {
+      elProductAddError.innerText = "Please be kind and fill in the stuff, buddy!";
+      return;
+    }
 
     // check if already in list!
-    if (fridge.products.find((prod) => prod.name === name)) return;
+    if (fridge.exists(name)) {
+      elProductAddError.innerText = "Already got that dude! Fuck off!"
+      return;
+    }
 
     const prodNew = new Product(name, volume, expiryDate);
     if (fridge.addProduct(prodNew)) {
@@ -61,7 +71,7 @@ export const setupListeners = (fridge) => {
       elProductVolume.value = "";
       elProductExpiry.value = "";
     } else {
-      console.log("Capacity exceeded! Product rejected");
+      elProductAddError.innerText = "Capacity exceeded! Go to hell with that item!";
     }
   });
 };

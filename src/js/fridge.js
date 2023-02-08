@@ -23,6 +23,10 @@ export class Fridge {
     return false
   }
 
+  exists(productName) {
+    return this.products.find((prod) => prod.name.toLowerCase() === productName.toLowerCase());
+  }
+
   /**
    * 
    * @param {Product} product 
