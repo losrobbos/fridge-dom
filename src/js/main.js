@@ -9,10 +9,12 @@ const products = [
   new Product("Cheese", 15, "2022-11-15"),
 ];
 
+// Store data in fridge. Fridge contains all logic
+
 const fridge = new Fridge(40, products);
 
+// make DOM "actionable" by initializing listeners and UI display 
 setupListeners(fridge)
-
 displayProducts(fridge);
 updateStats(fridge)
 

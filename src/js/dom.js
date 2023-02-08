@@ -136,7 +136,8 @@ export const updateStats = (fridge) => {
   elStatsCapacity.innerText = capacityMax;
   elStatsCapacityTaken.innerText = capTaken;
   elStatsCapacityAvailable.innerText = capAvailable;
-  elStatsBiggest.innerText = biggest.name;
-  elStatsLowest.innerText = smallest.name;
+
+  elStatsBiggest.innerText = biggest?.name || '(none)';
+  elStatsLowest.innerText = smallest?.name || '(none)';
   elStatsExpired.innerText = outdated.map((prod) => prod.name).join(", ");
 };
